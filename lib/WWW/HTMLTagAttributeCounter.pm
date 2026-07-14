@@ -3,7 +3,7 @@ package WWW::HTMLTagAttributeCounter;
 use warnings;
 use strict;
 
-our $VERSION = '0.0105';
+# VERSION
 
 use LWP::UserAgent;
 use HTML::TokeParser::Simple;
@@ -116,11 +116,15 @@ __END__
 
 =encoding utf8
 
+=for stopwords webpage arrayref hashref parsable IRC
+
 =head1 NAME
 
 WWW::HTMLTagAttributeCounter - access a webpage and count number of tags or attributes
 
 =head1 SYNOPSIS
+
+=for pod_spiffy start code section
 
     use strict;
     use warnings;
@@ -134,6 +138,8 @@ WWW::HTMLTagAttributeCounter - access a webpage and count number of tags or attr
 
     print "I counted $c tags on zoffix.com\n";
 
+=for pod_spiffy end code section
+
 =head1 DESCRIPTION
 
 The module was developed for use in an IRC bot thus you may find it useless for anything else.
@@ -145,6 +151,8 @@ attributes.
 
 =head2 C<new>
 
+=for pod_spiffy in key value | out object
+
     my $c = WWW::HTMLTagAttributeCounter->new;
 
     my $c = WWW::HTMLTagAttributeCounter->new(
@@ -155,6 +163,8 @@ Contructs and returns a fresh C<WWW::HTMLTagAttributeCounter> object. Takes the 
 arguments in a key/value fashion:
 
 =head3 C<ua>
+
+=for pod_spiffy in object
 
     my $c = WWW::HTMLTagAttributeCounter->new(
         ua => LWP::UserAgent->new( timeout => 10 ),
@@ -172,6 +182,8 @@ as the first argument. B<Default to:>
 =head1 METHODS
 
 =head2 C<count>
+
+=for pod_spiffy in scalar or arrayref | out hashref
 
     my $result = $c->count( 'http://zoffix.com/', 'div' )
         or die $c->error;
@@ -241,6 +253,8 @@ were counting and values are the actual count numbers.
 
 =head2 C<result>
 
+=for pod_spiffy in no args | out hashref
+
     $c->count( 'http://zoffix.com/', [ qw/div a span/ ], )
         or die $c->error;
 
@@ -250,6 +264,8 @@ Must be called after a successful call to C<count()> method. Returns the exact s
 last call to C<count()> method returned.
 
 =head2 C<result_readable>
+
+=for pod_spiffy in no args | out scalar
 
     $c->count( 'http://zoffix.com/', [ qw/div a span/ ], )
         or die $c->error;
@@ -271,6 +287,8 @@ get the return of this method.
 
 =head2 C<error>
 
+=for pod_spiffy in no args | out scalar
+
     $c->count( 'http://zoffix.com/', [ qw/div a span/ ], )
         or die $c->error;
 
@@ -280,6 +298,8 @@ human parsable error message explaing the failure.
 
 =head2 C<ua>
 
+=for pod_spiffy in object | out object
+
     my $ua = $c->ua;
     $ua->proxy( 'http', 'http://foo.com' );
     $c->ua( $ua );
@@ -287,52 +307,44 @@ human parsable error message explaing the failure.
 Returns currently used object that used for fetching URIs - see constructor's C<ua> argument
 for details. Takes one optional argument - the new object to use for fetching.
 
-=head1 AUTHOR
+=for pod_spiffy hr
 
-'Zoffix, C<< <'zoffix at cpan.org'> >>
-(L<http://zoffix.com/>, L<http://haslayout.net/>, L<http://zofdesign.com/>)
+=head1 REPOSITORY
+
+=for pod_spiffy start github section
+
+Fork this module on GitHub:
+L<https://github.com/zoffixznet/WWW-HTMLTagAttributeCounter>
+
+=for pod_spiffy end github section
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-www-htmltagattributecounter at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-HTMLTagAttributeCounter>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+=for pod_spiffy start bugs section
 
-=head1 SUPPORT
+To report bugs or request features, please use
+L<https://github.com/zoffixznet/WWW-HTMLTagAttributeCounter/issues>
 
-You can find documentation for this module with the perldoc command.
+If you can't access GitHub, you can email your request
+to C<bug-www-htmltagattributecounter at rt.cpan.org>
 
-    perldoc WWW::HTMLTagAttributeCounter
+=for pod_spiffy end bugs section
 
-You can also look for information at:
+=head1 AUTHOR
 
-=over 4
+=for pod_spiffy start author section
 
-=item * RT: CPAN's request tracker
+=for pod_spiffy author ZOFFIX
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-HTMLTagAttributeCounter>
+=for text Zoffix Znet <zoffix at cpan.org>
 
-=item * AnnoCPAN: Annotated CPAN documentation
+=for pod_spiffy end author section
 
-L<http://annocpan.org/dist/WWW-HTMLTagAttributeCounter>
+=head1 LICENSE
 
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/WWW-HTMLTagAttributeCounter>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/WWW-HTMLTagAttributeCounter>
-
-=back
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008 'Zoffix, all rights reserved.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-
+You can use and distribute this module under the same terms as Perl itself.
+See the C<LICENSE> file included in this distribution for complete
+details.
 
 =cut
 
